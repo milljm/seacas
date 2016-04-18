@@ -15,8 +15,8 @@ export ACCESS=$PACKAGES_DIR/seacas
 ##########
 # Download Prereqs
 #
-download_list=(https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.15/src/hdf5-1.8.15.tar.gz \
-ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.1.tar.gz)
+download_list=(http://mooseframework.org/source_packages/hdf5-1.8.15.tar.gz \
+http://mooseframework.org/source_packages/netcdf-4.3.3.1.tar.gz)
 download_file() {
   echo "Downloading "$1"..."
   curl --insecure -c -s -L -O $1
