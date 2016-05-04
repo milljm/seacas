@@ -9,7 +9,7 @@ fi
 unset MODULEPATH
 source $PACKAGES_DIR/Modules/3.2.10/init/bash
 module purge
-module load advanced_modules gcc_5.3.0 cmake
+module load advanced_modules gcc cmake
 export ACCESS=$PACKAGES_DIR/seacas
 
 ##########
