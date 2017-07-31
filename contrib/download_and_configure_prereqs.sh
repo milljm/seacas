@@ -11,6 +11,7 @@ source $PACKAGES_DIR/Modules/3.2.10/init/bash
 module purge
 module load advanced_modules gcc cmake
 export ACCESS=$PACKAGES_DIR/seacas
+export CC=gcc CXX=g++ FC=gfortran
 
 ##########
 # Download Prereqs
@@ -125,6 +126,7 @@ cmake  \
 -D NetCDF_DIR:PATH=$ACCESS \
 -D HDF5_ROOT:PATH=$ACCESS \
 -D HDF5_NO_SYSTEM_PATHS=ON \
+-D TPL_ENABLE_X11=OFF \
 $EXTRA_ARGS \
 ..
 
@@ -164,6 +166,7 @@ cmake  \
 -D HDF5_ROOT:PATH=$ACCESS \
 -D HDF5_NO_SYSTEM_PATHS=ON \
 -D SEACASProj_SKIP_FORTRANCINTERFACE_VERIFY_TEST:BOOL=ON \
+-D TPL_ENABLE_X11=OFF \
 ..
 
 if [ $? -ne 0 ]; then
