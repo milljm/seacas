@@ -14,6 +14,15 @@ NEEDS_ZLIB=${NEEDS_ZLIB:-NO}
 DOWNLOAD=${DOWNLOAD:-YES}
 INSTALL=${INSTALL:-YES}
 
+download() {
+    which wget
+    if [ $? == 0 ]; then
+        wget --no-check-certificate "$@"
+    else
+        curl --insecure -L -O "$@"
+    fi
+}
+
 if [ "$MPI" == "ON" ]
 then
     CC=/usr/bin/mpicc; export CC
@@ -26,7 +35,7 @@ then
     if [ "$DOWNLOAD" == "YES" ]
     then
 	rm -rf zlib-1.2.11.tar.gz
-	wget --no-check-certificate https://zlib.net/zlib-1.2.11.tar.gz
+	download https://zlib.net/zlib-1.2.11.tar.gz
     fi
     
     if [ "$INSTALL" == "YES" ]
@@ -47,7 +56,7 @@ cd TPL/hdf5
 if [ "$DOWNLOAD" == "YES" ]
 then
     rm -f hdf5-${hdf_version}.tar.bz2
-    wget --no-check-certificate https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${hdf_version}.tar.bz2
+    download https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${hdf_version}.tar.bz2
 fi
 
 if [ "$INSTALL" == "YES" ]
@@ -70,7 +79,7 @@ then
     if [ "$DOWNLOAD" == "YES" ]
     then
 	rm -f parallel-netcdf-${pnet_version}.tar.gz
-	wget http://cucis.ece.northwestern.edu/projects/PnetCDF/Release/parallel-netcdf-${pnet_version}.tar.gz
+	download http://cucis.ece.northwestern.edu/projects/PnetCDF/Release/parallel-netcdf-${pnet_version}.tar.gz
     fi
     
     if [ "$INSTALL" == "YES" ]
@@ -151,7 +160,14 @@ then
     if [ "$DOWNLOAD" == "YES" ]
     then
 	rm -rf parallel-*
-	wget --no-check-certificate ftp://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+	download ftp://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+        if [ $? != 0 ]; then
+            # maybe ftp protocol is blocked, try http...
+            download http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+        else
+            echo 'failed to download parllel-latest'
+            exit
+        fi
     fi
     
     if [ "$INSTALL" == "YES" ]
