@@ -16,8 +16,8 @@ export CC=gcc CXX=g++ FC=gfortran
 ##########
 # Download Prereqs
 #
-download_list=(http://mooseframework.org/source_packages/hdf5-1.8.15.tar.gz \
-http://mooseframework.org/source_packages/netcdf-4.3.3.1.tar.gz)
+download_list=(http://mooseframework.inl.gov/source_packages/hdf5-1.8.15.tar.gz \
+http://mooseframework.inl.gov/source_packages/netcdf-4.3.3.1.tar.gz)
 download_file() {
   echo "Downloading "$1"..."
   curl --insecure -c -s -L -O $1
