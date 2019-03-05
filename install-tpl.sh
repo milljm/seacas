@@ -107,7 +107,7 @@ then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf zlib-${zlib_version}
             rm -rf zlib-${zlib_version}.tar.gz
-            wget --no-check-certificate https://zlib.net/zlib-${zlib_version}.tar.gz
+            curl -k -L -O http://mooseframework.inl.gov/source_packages/zlib-${zlib_version}.tar.gz
             tar -xzf zlib-${zlib_version}.tar.gz
             rm -rf zlib-${zlib_version}.tar.gz
 	fi
@@ -144,12 +144,7 @@ fi
 if [ "$FORCE" == "YES" ] || ! [ -e $ACCESS/lib/libhdf5.${LD_EXT} ]
 then
     echo "${txtgrn}+++ HDF5${txtrst}"
-    if [ "${H5VERSION}" == "V18" ]
-    then
-	hdf_version="1.8.20"
-    else
-	hdf_version="1.10.3"
-    fi
+    hdf_version="1.10.3"
 
     cd $ACCESS
     cd TPL/hdf5
@@ -158,12 +153,7 @@ then
 	echo "${txtgrn}+++ Downloading...${txtrst}"
         rm -rf hdf5-${hdf_version}
         rm -f hdf5-${hdf_version}.tar.bz2
-	if [ "${H5VERSION}" == "V18" ]
-	then
-	    wget --no-check-certificate https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${hdf_version}.tar.bz2
-	else
-	    wget --no-check-certificate https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-${hdf_version}/src/hdf5-${hdf_version}.tar.bz2
-	fi
+        curl -k -L -O https://mooseframework.inl.gov/source_packages/hdf5-${hdf_version}.tar.bz2
         tar -jxf hdf5-${hdf_version}.tar.bz2
         rm -f hdf5-${hdf_version}.tar.bz2
     fi
@@ -204,7 +194,7 @@ then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf parallel-netcdf-${pnet_version}
             rm -f parallel-netcdf-${pnet_version}.tar.gz
-            wget http://cucis.ece.northwestern.edu/projects/PnetCDF/Release/parallel-netcdf-${pnet_version}.tar.gz
+            curl -k -L -O https://mooseframework.inl.gov/source_packages/parallel-netcdf-${pnet_version}.tar.gz
             tar -xzf parallel-netcdf-${pnet_version}.tar.gz
             rm -f parallel-netcdf-${pnet_version}.tar.gz
         fi
@@ -372,7 +362,7 @@ then
         then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf parallel-*
-            wget --no-check-certificate ftp://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+            curl -k -L -O https://mooseframework.inl.gov/source_packages/parallel-latest.tar.bz2
             tar -jxf parallel-latest.tar.bz2
             rm -rf parallel-latest.tar.bz2
         fi
