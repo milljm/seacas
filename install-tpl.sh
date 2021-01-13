@@ -107,7 +107,7 @@ then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf zlib-${zlib_version}
             rm -rf zlib-${zlib_version}.tar.gz
-            wget --no-check-certificate https://zlib.net/zlib-${zlib_version}.tar.gz
+            curl --insecure -L -O https://zlib.net/zlib-${zlib_version}.tar.gz
             tar -xzf zlib-${zlib_version}.tar.gz
             rm -rf zlib-${zlib_version}.tar.gz
 	fi
@@ -160,9 +160,9 @@ then
         rm -f hdf5-${hdf_version}.tar.bz2
 	if [ "${H5VERSION}" == "V18" ]
 	then
-	    wget --no-check-certificate https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${hdf_version}.tar.bz2
+	    curl --insecure -L -O https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-${hdf_version}.tar.bz2
 	else
-	    wget --no-check-certificate https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-${hdf_version}/src/hdf5-${hdf_version}.tar.bz2
+	    curl --insecure -L -O https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-${hdf_version}/src/hdf5-${hdf_version}.tar.bz2
 	fi
         tar -jxf hdf5-${hdf_version}.tar.bz2
         rm -f hdf5-${hdf_version}.tar.bz2
@@ -204,7 +204,7 @@ then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf parallel-netcdf-${pnet_version}
             rm -f parallel-netcdf-${pnet_version}.tar.gz
-            wget http://cucis.ece.northwestern.edu/projects/PnetCDF/Release/parallel-netcdf-${pnet_version}.tar.gz
+            curl --insecure -L -O http://cucis.ece.northwestern.edu/projects/PnetCDF/Release/parallel-netcdf-${pnet_version}.tar.gz
             tar -xzf parallel-netcdf-${pnet_version}.tar.gz
             rm -f parallel-netcdf-${pnet_version}.tar.gz
         fi
@@ -372,7 +372,7 @@ then
         then
 	    echo "${txtgrn}+++ Downloading...${txtrst}"
             rm -rf parallel-*
-            wget --no-check-certificate ftp://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+            curl --insecure -L -O http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
             tar -jxf parallel-latest.tar.bz2
             rm -rf parallel-latest.tar.bz2
         fi
